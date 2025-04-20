@@ -1,24 +1,96 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>سایت من</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-      font-size: 24px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عسل طبیعی کندوی طلایی</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <div>به سایت من خوش آمدید!</div>
+    <!-- نوار ناوبری -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>کندوی طلایی</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">خانه</a></li>
+            <li><a href="#products">محصولات</a></li>
+            <li><a href="#about">درباره ما</a></li>
+            <li><a href="#contact">تماس</a></li>
+            <li class="cart-icon">
+                <a href="#cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-counter">0</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- صفحه اصلی -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>طعم واقعی طبیعت در هر قطره</h2>
+            <button onclick="scrollToProducts()">مشاهده محصولات</button>
+        </div>
+    </section>
+
+    <!-- محصولات -->
+    <section id="products" class="products-section">
+        <h2 class="section-title">محصولات ما</h2>
+        <div class="products-grid">
+            <!-- محصول 1 -->
+            <div class="product-card">
+                <img src="assets/images/honey1.jpg" alt="عسل گون">
+                <h3>عسل گون</h3>
+                <p class="price">۱۵۰,۰۰۰ تومان</p>
+                <button onclick="addToCart('عسل گون', 150000)">افزودن به سبد</button>
+            </div>
+            <!-- محصول 2 -->
+            <div class="product-card">
+                <img src="assets/images/honey2.jpg" alt="عسل کنار">
+                <h3>عسل کنار</h3>
+                <p class="price">۱۷۰,۰۰۰ تومان</p>
+                <button onclick="addToCart('عسل کنار', 170000)">افزودن به سبد</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- درباره ما -->
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <h2 class="section-title">درباره ما</h2>
+            <p>ما با بیش از ۲۰ سال تجربه در تولید عسل ارگانیک...</p>
+            <img src="assets/images/bee-farm.jpg" alt="مزرعه زنبورداری">
+        </div>
+    </section>
+
+    <!-- تماس -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">تماس با ما</h2>
+        <div class="contact-container">
+            <form class="contact-form" onsubmit="return submitForm(event)">
+                <input type="text" placeholder="نام شما" required>
+                <input type="email" placeholder="ایمیل" required>
+                <textarea placeholder="پیام شما..." rows="5"></textarea>
+                <button type="submit">ارسال پیام</button>
+            </form>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> آدرس: تهران، خیابان نمونه</p>
+                <p><i class="fas fa-phone"></i> تلفن: ۰۹۱۲XXX۱۲۳۴</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer>
+        <p>© ۱۴۰۲ تمام حقوق محفوظ است</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
