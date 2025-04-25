@@ -1,258 +1,341 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عسل طلایی - فروشگاه آنلاین</title>
-    <!-- فونت ایرانی -->
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
-    <!-- استایل اختصاصی -->
-    <style>
-        /* رنگ‌بندی حرفه‌ای */
-        :root {
-            --primary: #FFAB00; /* طلایی */
-            --secondary: #4CAF50; /* سبز طبیعی */
-            --dark: #2E7D32; /* سبز تیره */
-            --light: #FFF8E1; /* بژ روشن */
-        }
-
-        /* ریست استایل */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Vazirmatn, sans-serif;
-        }
-
-        body {
-            background: var(--light);
-        }
-
-        /* نوار ناوبری */
-        .main-nav {
-            background: rgba(255, 255, 255, 0.97);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--dark);
-            text-decoration: none;
-            margin: 0 1.5rem;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        /* اسلایدر اصلی */
-        .hero-slider {
-            height: 80vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-                        url('images/hero-bg.jpg') center/cover;
-            margin-top: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-content {
-            text-align: center;
-            color: white;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        /* دسته‌بندی محصولات */
-        .categories {
-            padding: 4rem 0;
-            background: white;
-        }
-
-        .category-card {
-            border: 2px solid var(--primary);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        /* محصولات ویژه */
-        .featured-products {
-            padding: 4rem 0;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-image {
-            height: 250px;
-            object-fit: cover;
-        }
-
-        /* بخش اعتمادسازی */
-        .trust-section {
-            background: var(--dark);
-            color: white;
-            padding: 4rem 0;
-        }
-
-        /* فوتر */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>روyal اکسیره - عسل طبیعی حیدری</title>
+  <style>
+    /* تنظیمات اولیه سبک */
+    body {
+      font-family: Tahoma, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      direction: rtl;
+    }
+    header {
+      background: #8a2be2;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    nav {
+      background: #532e8a;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .post {
+      margin-bottom: 40px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 20px;
+    }
+    .post h2 {
+      font-size: 1.8em;
+      color: #333;
+    }
+    .post p {
+      margin: 10px 0;
+    }
+    .video-container,
+    .image-container {
+      margin: 15px 0;
+    }
+    video {
+      max-width: 100%;
+      height: auto;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    footer {
+      background: #8a2be2;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+    }
+  </style>
 </head>
 <body>
-    <!-- نوار ناوبری -->
-    <nav class="main-nav">
-        <div class="nav-content">
-            <img src="images/logo.png" alt="لوگو" width="150">
-            <div class="nav-links">
-                <a href="#products">محصولات</a>
-                <a href="#about">درباره ما</a>
-                <a href="#contact">تماس</a>
-                <a href="#cart" class="cart-btn">🛒 سبد خرید</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- اسلایدر اصلی -->
-    <section class="hero-slider">
-        <div class="hero-content">
-            <h1 class="hero-title">طبیعت خالص در هر قطره</h1>
-            <p class="lead-text">ارگانیک • ساکارز زیر ۲% • تضمین کیفیت</p>
-            <a href="#products" class="cta-btn">مشاهده محصولات</a>
-        </div>
+  <!-- سرصفحه -->
+  <header>
+    <h1>روyal اکسیره</h1>
+    <p>مدیریت: حیدری</p>
+  </header>
+  
+  <!-- منو -->
+  <nav>
+    <a href="#home">خانه</a>
+    <a href="#about">درباره ما</a>
+    <a href="#contact">تماس</a>
+  </nav>
+  
+  <!-- بخش پست‌ها -->
+  <div id="home" class="container">
+    <!-- پست ۱: تشخیص عسل طبیعی -->
+    <section class="post" id="post1">
+      <h2>تشخیص عسل طبیعی</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post1.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
+      <p>
+        بیش از 75 درصد عسل‌های بازار طبیعی نیستند و بی‌کیفیت می‌باشند. عسل‌های بی‌کیفیت، شکری هستند که زنبور ندیده‌اند. تشخیص خانگی عسل ممکن نیست و حتماً باید برگه آزمایش تاییدی موجود باشد. طبق استاندارد ساکارز، مقدار ساکاروز باید زیر 5 درصد و برای افراد دیابتی حدود 2 درصد باشد.
+      </p>
     </section>
-
-    <!-- دسته‌بندی محصولات -->
-    <section class="categories">
-        <div class="container">
-            <h2 class="section-title">دسته‌بندی محصولات</h2>
-            <div class="grid">
-                <div class="category-card">
-                    <img src="images/icons/honey.png" alt="عسل" width="80">
-                    <h3>عسل تک گل</h3>
-                    <p>گون، کنار، چهل گیاه</p>
-                </div>
-                <!-- دسته‌بندی‌های دیگر -->
-            </div>
-        </div>
+    
+    <!-- پست ۲: آیات شفابخش سوره نحل -->
+    <section class="post" id="post2">
+      <h2>شفابخشی عسل - آیات ۶۸ و ۶۹ سوره نحل</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post2.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
     </section>
-
-    <!-- محصولات ویژه -->
-    <section class="featured-products">
-        <div class="container">
-            <h2 class="section-title">پرفروش‌ترین محصولات</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="images/products/honey1.jpg" class="product-image" alt="عسل گون">
-                    <div class="product-details">
-                        <h3>عسل گون ممتاز</h3>
-                        <div class="price">۱۵۹,۰۰۰ تومان</div>
-                        <button class="add-to-cart">+ افزودن به سبد</button>
-                    </div>
-                </div>
-                <!-- محصولات دیگر -->
-            </div>
-        </div>
+    
+    <!-- پست ۳: شماره تلفن -->
+    <section class="post" id="post3">
+      <h2>تماس با ما</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post3.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
+      <p>شماره تلفن: <strong>09132178935</strong></p>
     </section>
-
-    <!-- بخش اعتمادسازی -->
-    <section class="trust-section">
-        <div class="container">
-            <div class="trust-items">
-                <div class="trust-item">
-                    <img src="images/icons/certificate.png" alt="گواهی" width="60">
-                    <h4>دارای گواهی ارگانیک</h4>
-                </div>
-                <div class="trust-item">
-                    <img src="images/icons/delivery.png" alt="تحویل" width="60">
-                    <h4>تحویل ۲۴ ساعته</h4>
-                </div>
-            </div>
-        </div>
+    
+    <!-- پست ۴: برگه آزمایش تاییدی -->
+    <section class="post" id="post4">
+      <h2>برگه آزمایش تاییدی</h2>
+      <div class="image-container">
+        <img src="images/test_certificate.jpg" alt="برگه آزمایش تاییدی با ساکارز 1.8">
+      </div>
+      <p>این برگه نشانگر تایید کیفیت و ارگانیک بودن عسل است.</p>
     </section>
-
-    <!-- فوتر -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="contact-info">
-                    <h4>ارتباط با ما</h4>
-                    <p>۰۹۱۳-XXX-XXXX</p>
-                    <p>اصفهان، کوهستان کرکس</p>
-                </div>
-                <div class="social-links">
-                    <a href="#"><img src="images/icons/instagram.png" width="30"></a>
-                    <a href="#"><img src="images/icons/eita.png" width="30"></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- اسکریپت‌ها -->
-    <script>
-        // مدیریت سبد خرید
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        
-        function addToCart(product) {
-            cart.push(product);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCounter();
-        }
-
-        function updateCartCounter() {
-            const counter = document.querySelector('.cart-counter');
-            if(counter) counter.textContent = cart.length;
-        }
-
-        // اسلایدر خودکار
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        setInterval(nextSlide, 5000);
-    </script>
+    
+    <!-- پست ۵: پیج اینستاگرام -->
+    <section class="post" id="post5">
+      <h2>پیج اینستاگرام</h2>
+      <p>
+        جهت مشاهده داستان‌های بیشتر، به پیج اینستاگرام مراجعه کنید:  
+        <a href="https://www.instagram.com/stories/royalexir.honey/3491198250067300008?igsh=cjVjYmxuOG12c3o0" target="_blank">
+          royalexir.honey
+        </a>
+      </p>
+    </section>
+    
+    <!-- پست ۶: کار در تابستان و جریان شهد -->
+    <section class="post" id="post6">
+      <h2>جریان تولید عسل در تابستان</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post6.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
+      <p>
+        حتی در آخرین روزهای تابستان، زنبورها در حال کارند و جریان شهد همچنان ادامه دارد.
+      </p>
+    </section>
+    
+    <!-- پست ۷: خواص درمانی عسل (تصویر) -->
+    <section class="post" id="post7">
+      <h2>خواص درمانی عسل</h2>
+      <div class="image-container">
+        <img src="images/therapeutic_properties.jpg" alt="خواص درمانی عسل">
+      </div>
+      <p>
+        عسل دارای خواصی همچون خواب‌آور بودن، ضدپیری پوست، سفیدکننده دندان، محافظ لثه، کمک به درمان بیماری کبدی و پاک‌کننده مسمومیت غذایی است.
+      </p>
+    </section>
+    
+    <!-- پست ۸: خواص عسل (تصویر) -->
+    <section class="post" id="post8">
+      <h2>خواص عسل</h2>
+      <div class="image-container">
+        <img src="images/honey_benefits.jpg" alt="خواص عسل: تقویت قوای جنسی، ضد کم‌خونی، تقویت اعصاب و قلب">
+      </div>
+      <p>
+        عسل با خواص تقویت قوای جنسی و جسمی، ضد کم‌خونی و تقویت اعصاب و قلب به سلامتی کمک می‌کند.
+      </p>
+    </section>
+    
+    <!-- پست ۸‌ب: ترکیب عسل و سیاه دانه (فیلم) -->
+    <section class="post" id="post8b">
+      <h2>ترکیب عسل و سیاه دانه</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post8b.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
+      <p>
+        حدیث از امام رضا بیان می‌کند: «در سیاه دانه شفای هر دردیست مگر مرگ و بر شماست». مصرف منظم یک قاشق مرباخوری عسل همراه با هفت عدد سیاه دانه می‌تواند به تقویت سیستم ایمنی، درمان سرماخوردگی، تب‌های طولانی، سردرد، درد شکم، آلرژی‌های ادراری و سایر مشکلات کمک کند. (با مشورت پزشک برای خانم‌های باردار)
+      </p>
+    </section>
+    
+    <!-- پست ۹: صبحانه‌های عسلی (فیلم) -->
+    <section class="post" id="post9">
+      <h2>صبحانه‌های عسلی</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post9.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
+      <p>
+        نمونه‌های صبحانه: کره عسل، بادام و عسل، تخم‌مرغ و عسل، پنیر و عسل، خامه و عسل، پنکیک و عسل.
+      </p>
+    </section>
+    
+    <!-- پست ۱۰: مکان کار و تولید عسل (فیلم) -->
+    <section class="post" id="post10">
+      <h2>محل تولید عسل</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post10.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
+      <p>
+        عسل طبیعی خوب از صحرای غنی و قوی عمل می‌آید؛ تصاویر نشان‌دهنده زنبورهایی هستند که در محیطی طبیعی فعالیت می‌کنند.
+      </p>
+    </section>
+    
+    <!-- پست ۱۱: تولید عسل با بچه‌های مصنوعی و ملکه تقویت‌شده (فیلم) -->
+    <section class="post" id="post11">
+      <h2>تولید عسل با بچه‌های مصنوعی و ملکه تقویت‌شده</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post11.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
+    </section>
+    
+    <!-- پست ۱۲: نمایش Reel - لینک متنی -->
+    <section class="post" id="post12">
+      <h2>نمایش ویدیو در اینستاگرام</h2>
+      <p>
+        برای مشاهده ویدیو بیشتر، به این لینک مراجعه کنید: 
+        <a href="https://www.instagram.com/reel/DCEwxpfNntB/?igsh=c3hiYWxsa2k1ajE2" target="_blank">
+          مشاهده در اینستاگرام
+        </a>
+      </p>
+    </section>
+    
+    <!-- پست ۱۳: کیفیت عسل و پیمایش زنبورها (فیلم) -->
+    <section class="post" id="post13">
+      <h2>کیفیت عسل</h2>
+      <p>
+        نیم کیلو عسل حاصل صدهزار کیلومتر پیمایش توسط ده هزار زنبور و شهد هشت میلیون گله.
+      </p>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post13.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
+    </section>
+    
+    <!-- پست ۱۴: توضیحات زنبورداری (فیلم) -->
+    <section class="post" id="post14">
+      <h2>توضیحات زنبورداری</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post14.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
+      <p>
+        توضیح: منطقه کرکس؛ زنبور می‌تواند حتی فراتر از توان خود عمل نماید.
+      </p>
+    </section>
+    
+    <!-- پست ۱۵: عسل حاصل گیاهان دارویی (فیلم) -->
+    <section class="post" id="post15">
+      <h2>عسل حاصل گیاهان دارویی</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post15.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
+      <p>
+        عسل گرفته شده از گیاهان دارویی مانند کاکوتی، شکرتقان، انگبین و پونه؛ به عبارتی شامل عسل شکرتقان و گون انگبین.
+      </p>
+    </section>
+    
+    <!-- پست ۱۶: کوچ زنبورستان (فیلم) -->
+    <section class="post" id="post16">
+      <h2>کوچ زنبورستان</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post16.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
+    </section>
+    
+    <!-- پست ۱۷: عسل با موم بافته (فیلم) -->
+    <section class="post" id="post17">
+      <h2>عسل با موم خود بافته - ۱۰۰٪ طبیعی</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="videos/post17.mp4" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+      </div>
+    </section>
+    
+  </div>
+  
+  <!-- بخش درباره ما -->
+  <div id="about" class="container">
+    <h2>درباره ما</h2>
+    <p>
+      ما یک زنبورداری کوچک با تمرکز بر تولید عسل طبیعی و باکیفیت هستیم. برند "روyal اکسیره" متعلق به حیدری است و با تلاش و عشق روزانه ساخته شده تا بهترین خواص طبیعی را به شما عرضه کند.
+    </p>
+  </div>
+  
+  <!-- بخش تماس -->
+  <div id="contact" class="container">
+    <h2>تماس با ما</h2>
+    <p>
+      برای کسب اطلاعات بیشتر و سفارش عسل طبیعی، می‌توانید از طریق شماره تلفن فوق یا لینک‌های شبکه‌های اجتماعی با ما در ارتباط باشید.
+    </p>
+    <p>
+      کانال ایتا: <a href="https://eitaa.com/Royalexir" target="_blank">https://eitaa.com/Royalexir</a>
+    </p>
+  </div>
+  
+  <!-- فوتر -->
+  <footer>
+    <p>حق کپی‌رایت © 2025 رویال اکسیره. تمامی حقوق محفوظ است.</p>
+  </footer>
 </body>
 </html>
