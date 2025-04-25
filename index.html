@@ -3,100 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عسل رویال اکسیر | الهام گرفته از علی‌بابا</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>عسل طلایی - فروشگاه آنلاین</title>
+    <!-- فونت ایرانی -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <!-- استایل اختصاصی -->
     <style>
+        /* رنگ‌بندی حرفه‌ای */
         :root {
-            --gold: #FFD700;
-            --green: #2E7D32;
-            --dark: #1B5E20;
+            --primary: #FFAB00; /* طلایی */
+            --secondary: #4CAF50; /* سبز طبیعی */
+            --dark: #2E7D32; /* سبز تیره */
+            --light: #FFF8E1; /* بژ روشن */
         }
-        
+
+        /* ریست استایل */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Vazirmatn, sans-serif;
+        }
+
         body {
-            font-family: 'Vazirmatn', sans-serif;
+            background: var(--light);
         }
-        
-        /* هدر */
-        .alibaba-header {
-            background: var(--green);
-            border-bottom: 3px solid var(--gold);
+
+        /* نوار ناوبری */
+        .main-nav {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
-        
-        .header-badge {
-            background: var(--gold);
-            padding: 5px 15px;
-            border-radius: 20px;
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
-        /* اسلایدر */
-        .main-slider {
-            height: 70vh;
-            background: linear-gradient(rgba(0,0,0,0.7), url('images/slider1.jpg') center/cover;
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 500;
+            transition: 0.3s;
         }
-        
-        /* کارت محصول */
-        .honey-card {
-            border: 2px solid var(--gold);
-            transition: all 0.3s;
+
+        .nav-links a:hover {
+            color: var(--primary);
         }
-        
-        .honey-card:hover {
-            transform: scale(1.03);
+
+        /* اسلایدر اصلی */
+        .hero-slider {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                        url('images/hero-bg.jpg') center/cover;
+            margin-top: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
-        .lab-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--green);
+
+        .hero-content {
+            text-align: center;
             color: white;
         }
-        
-        /* بخش آیات */
-        .quran-section {
-            background: url('images/quran-bg.jpg') fixed;
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* دسته‌بندی محصولات */
+        .categories {
             padding: 4rem 0;
+            background: white;
+        }
+
+        .category-card {
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* محصولات ویژه */
+        .featured-products {
+            padding: 4rem 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* بخش اعتمادسازی */
+        .trust-section {
+            background: var(--dark);
             color: white;
+            padding: 4rem 0;
+        }
+
+        /* فوتر */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
         }
     </style>
 </head>
 <body>
-    <!-- هدر -->
-    <header class="alibaba-header py-2">
-        <div class="container d-flex justify-content-between">
-            <div class="d-flex gap-3 text-white">
-                <span>📞 09132178935</span>
-                <a href="https://eitaa.com/Royalexir" class="text-white">📢 کانال ایتا</a>
+    <!-- نوار ناوبری -->
+    <nav class="main-nav">
+        <div class="nav-content">
+            <img src="images/logo.png" alt="لوگو" width="150">
+            <div class="nav-links">
+                <a href="#products">محصولات</a>
+                <a href="#about">درباره ما</a>
+                <a href="#contact">تماس</a>
+                <a href="#cart" class="cart-btn">🛒 سبد خرید</a>
             </div>
-            <div class="header-badge">🚚 ارسال رایگان از 3 کیلو</div>
         </div>
-    </header>
+    </nav>
 
     <!-- اسلایدر اصلی -->
-    <section class="main-slider d-flex align-items-center">
-        <div class="container text-white" data-aos="fade-up">
-            <h1 class="display-1 mb-4">عسل کوهستان کرکس</h1>
-            <p class="lead">طبیعی 100% • ساکارز 1.8% • برگه آزمایش معتبر</p>
-            <button class="btn btn-warning btn-lg mt-3">🛒 خرید عمده</button>
+    <section class="hero-slider">
+        <div class="hero-content">
+            <h1 class="hero-title">طبیعت خالص در هر قطره</h1>
+            <p class="lead-text">ارگانیک • ساکارز زیر ۲% • تضمین کیفیت</p>
+            <a href="#products" class="cta-btn">مشاهده محصولات</a>
         </div>
     </section>
 
-    <!-- محصولات -->
-    <section class="py-5 bg-light">
+    <!-- دسته‌بندی محصولات -->
+    <section class="categories">
         <div class="container">
-            <h2 class="text-center mb-5" data-aos="fade-down">🍯 محصولات ویژه</h2>
-            <div class="row g-4">
-                <!-- محصول 1 -->
-                <div class="col-md-4" data-aos="zoom-in">
-                    <div class="honey-card position-relative p-3">
-                        <div class="lab-badge p-2">🔬 ساکارز 1.8%</div>
-                        <img src="images/honey1.jpg" class="img-fluid">
-                        <h3 class="my-3">عسل کنار</h3>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="h4 text-success">175,000 تومان</span>
-                            <button class="btn btn-primary">+ سبد خرید</button>
-                        </div>
+            <h2 class="section-title">دسته‌بندی محصولات</h2>
+            <div class="grid">
+                <div class="category-card">
+                    <img src="images/icons/honey.png" alt="عسل" width="80">
+                    <h3>عسل تک گل</h3>
+                    <p>گون، کنار، چهل گیاه</p>
+                </div>
+                <!-- دسته‌بندی‌های دیگر -->
+            </div>
+        </div>
+    </section>
+
+    <!-- محصولات ویژه -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">پرفروش‌ترین محصولات</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="images/products/honey1.jpg" class="product-image" alt="عسل گون">
+                    <div class="product-details">
+                        <h3>عسل گون ممتاز</h3>
+                        <div class="price">۱۵۹,۰۰۰ تومان</div>
+                        <button class="add-to-cart">+ افزودن به سبد</button>
                     </div>
                 </div>
                 <!-- محصولات دیگر -->
@@ -104,73 +194,65 @@
         </div>
     </section>
 
-    <!-- بخش آیات -->
-    <section class="quran-section">
-        <div class="container text-center" data-aos="fade-up">
-            <h2 class="mb-4">﴿وَأَوْحَىٰ رَبُّكَ إِلَى النَّحْلِ...﴾</h2>
-            <p class="h5">سوره نحل آیات 68-69</p>
-            <p class="mt-3">«و پروردگار تو به زنبور عسل الهام کرد... در آن شفا برای مردم است»</p>
-        </div>
-    </section>
-
-    <!-- خواص درمانی -->
-    <section class="py-5">
+    <!-- بخش اعتمادسازی -->
+    <section class="trust-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6" data-aos="fade-right">
-                    <img src="images/black-seed.jpg" class="img-fluid rounded">
+            <div class="trust-items">
+                <div class="trust-item">
+                    <img src="images/icons/certificate.png" alt="گواهی" width="60">
+                    <h4>دارای گواهی ارگانیک</h4>
                 </div>
-                <div class="col-md-6" data-aos="fade-left">
-                    <h2 class="text-success">ترکیب معجزه‌آسا</h2>
-                    <p class="lead">«در سیاهدانه شفای هر دردیست...» - امام رضا(ع)</p>
-                    <ul class="list-group">
-                        <li class="list-group-item">تقویت سیستم ایمنی</li>
-                        <li class="list-group-item">درمان زخم معده</li>
-                        <li class="list-group-item">پیشگیری از سرطان</li>
-                    </ul>
+                <div class="trust-item">
+                    <img src="images/icons/delivery.png" alt="تحویل" width="60">
+                    <h4>تحویل ۲۴ ساعته</h4>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- فوتر -->
-    <footer class="bg-dark text-white py-4">
+    <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
+            <div class="footer-content">
+                <div class="contact-info">
                     <h4>ارتباط با ما</h4>
-                    <p>📍 کوهستان کرکس، اصفهان</p>
-                    <iframe src="https://maps.google.com/maps?q=کوهستان%20کرکس&output=embed" 
-                            width="100%" height="150" style="border:0"></iframe>
+                    <p>۰۹۱۳-XXX-XXXX</p>
+                    <p>اصفهان، کوهستان کرکس</p>
                 </div>
-                <div class="col-md-4">
-                    <h4>لینک‌های مفید</h4>
-                    <a href="#" class="text-white d-block">مقالات آموزشی</a>
-                    <a href="#" class="text-white d-block">سوالات متداول</a>
-                </div>
-                <div class="col-md-4">
-                    <h4>شبکه‌های اجتماعی</h4>
-                    <a href="https://instagram.com/royalexir.honey" 
-                       class="btn btn-outline-light mb-2">
-                       <i class="fab fa-instagram"></i> اینستاگرام
-                    </a>
+                <div class="social-links">
+                    <a href="#"><img src="images/icons/instagram.png" width="30"></a>
+                    <a href="#"><img src="images/icons/eita.png" width="30"></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- اسکریپت‌ها -->
     <script>
-        AOS.init({duration: 1000});
-        
         // مدیریت سبد خرید
-        let cart = [];
-        function addToCart(name, price) {
-            cart.push({name, price});
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        function addToCart(product) {
+            cart.push(product);
             localStorage.setItem('cart', JSON.stringify(cart));
-            alert('به سبد خرید اضافه شد!');
+            updateCartCounter();
         }
+
+        function updateCartCounter() {
+            const counter = document.querySelector('.cart-counter');
+            if(counter) counter.textContent = cart.length;
+        }
+
+        // اسلایدر خودکار
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 5000);
     </script>
 </body>
 </html>
