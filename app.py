@@ -3,19 +3,18 @@ import sqlite3
 import datetime
 import csv
 from io import StringIO
-# افزودن ماژول زمان‌بندی APScheduler جهت بررسی وظایف نزدیک به موعد
 from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 
 # -----------------------------------------------------------
-# راه‌اندازی پایگاه داده و ایجاد جداول مورد نیاز
+# Initialize the database and create required tables
 # -----------------------------------------------------------
 def init_db():
     conn = sqlite3.connect("construction.db")
     cursor = conn.cursor()
 
-    # جدول پروژه‌ها
+    # Projects table
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS projects (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,7 +25,7 @@ def init_db():
     )
     ''')
 
-    # جدول وظایف
+    # Tasks table
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS tasks (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,7 +38,7 @@ def init_db():
     )
     ''')
 
-    # جدول کارگران (منابع انسانی)
+    # Workers table (human resources)
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS workers (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -50,7 +49,7 @@ def init_db():
     )
     ''')
 
-    # جدول مواد مصرفی (شماره مواد، تعداد و هزینه واحد)
+    # Materials table
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS materials (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -62,7 +61,7 @@ def init_db():
     )
     ''')
 
-    # جدول هزینه‌ها
+    # Expenses table
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS expenses (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -75,7 +74,7 @@ def init_db():
     )
     ''')
 
-    # جدول اعلان‌ها برای سیستم هشدار وظایف نزدیک موعد
+    # Notifications table for task due alerts
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS notifications (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -93,17 +92,17 @@ def init_db():
 
 init_db()
 
-# تابع اتصال به پایگاه داده با قابلیت row_factory برای دسترسی دیکشنری به ستون‌ها
+# Database connection helper with row_factory for dict-like access
 def get_db_connection():
     conn = sqlite3.connect("construction.db")
     conn.row_factory = sqlite3.Row
     return conn
 
 # -----------------------------------------------------------
-# مسیرهای اصلی و عملیات CRUD
+# Main routes and CRUD operations
 # -----------------------------------------------------------
 
-# صفحه اصلی؛ نمایش لیست پروژه‌ها
+# Home page: List of projects
 @app.route("/")
 def index():
     conn = get_db_connection()
@@ -111,7 +110,7 @@ def index():
     conn.close()
     return render_template("index.html", projects=projects)
 
-# جزئیات یک پروژه شامل وظایف، کارگران، مواد مصرفی و هزینه‌ها
+# Project details: Including tasks, workers, materials, and expenses
 @app.route("/project/<int:project_id>")
 def project_detail(project_id):
     conn = get_db_connection()
@@ -124,7 +123,7 @@ def project_detail(project_id):
     return render_template("project_detail.html", project=project, tasks=tasks,
                            workers=workers, materials=materials, expenses=expenses)
 
-# افزودن پروژه جدید
+# Add new project
 @app.route("/add_project", methods=["GET", "POST"])
 def add_project():
     if request.method == "POST":
@@ -142,7 +141,7 @@ def add_project():
         return redirect(url_for("index"))
     return render_template("add_project.html")
 
-# افزودن وظیفه به پروژه
+# Add task to a project
 @app.route("/add_task/<int:project_id>", methods=["GET", "POST"])
 def add_task(project_id):
     if request.method == "POST":
@@ -159,7 +158,7 @@ def add_task(project_id):
         return redirect(url_for("project_detail", project_id=project_id))
     return render_template("add_task.html", project_id=project_id)
 
-# تغییر وضعیت وظیفه (از pending به completed و بالعکس)
+# Toggle task status (pending <-> completed)
 @app.route("/update_task_status/<int:task_id>")
 def update_task_status(task_id):
     conn = get_db_connection()
@@ -173,7 +172,7 @@ def update_task_status(task_id):
     conn.close()
     return redirect(url_for("project_detail", project_id=project_id))
 
-# افزودن کارگر به پروژه
+# Add new worker to a project
 @app.route("/add_worker/<int:project_id>", methods=["GET", "POST"])
 def add_worker(project_id):
     if request.method == "POST":
@@ -189,7 +188,7 @@ def add_worker(project_id):
         return redirect(url_for("project_detail", project_id=project_id))
     return render_template("add_worker.html", project_id=project_id)
 
-# افزودن ماده مصرفی به پروژه
+# Add new material to a project
 @app.route("/add_material/<int:project_id>", methods=["GET", "POST"])
 def add_material(project_id):
     if request.method == "POST":
@@ -206,7 +205,7 @@ def add_material(project_id):
         return redirect(url_for("project_detail", project_id=project_id))
     return render_template("add_material.html", project_id=project_id)
 
-# افزودن هزینه به پروژه
+# Add new expense to a project
 @app.route("/add_expense/<int:project_id>", methods=["GET", "POST"])
 def add_expense(project_id):
     if request.method == "POST":
@@ -225,7 +224,7 @@ def add_expense(project_id):
     return render_template("add_expense.html", project_id=project_id)
 
 # -----------------------------------------------------------
-# صفحه‌ی گزارش کلی پروژه‌ها
+# Reports page: Overall project summary
 # -----------------------------------------------------------
 @app.route("/reports")
 def reports():
@@ -251,10 +250,10 @@ def reports():
     return render_template("reports.html", report_data=report_data)
 
 # -----------------------------------------------------------
-# امکانات جدید: سیستم اعلان، نمودارها و امکانات اضافی برای تعامل با داده‌ها
+# Additional features: Notifications, Charts and Data Interactions
 # -----------------------------------------------------------
 
-# استفاده از APScheduler جهت بررسی وظایف نزدیک به موعد (به عنوان مثال وظایفی که فردا موعد دارند)
+# Use APScheduler to check for tasks due tomorrow (pending tasks)
 def check_due_tasks():
     conn = get_db_connection()
     tomorrow = datetime.date.today() + datetime.timedelta(days=1)
@@ -266,10 +265,10 @@ def check_due_tasks():
     ).fetchall()
     
     for task in tasks_due:
-        # در صورتی که اعلان برای این وظیفه ثبت نشده باشد
+        # If the notification for this task does not exist, create it
         existing = conn.execute("SELECT * FROM notifications WHERE task_id = ?", (task["id"],)).fetchone()
         if not existing:
-            message = f"وظیفه '{task['name']}' فردا موعد دارد."
+            message = f"Task '{task['name']}' is due tomorrow."
             conn.execute(
                 "INSERT INTO notifications (project_id, task_id, message, created_at) VALUES (?, ?, ?, ?)",
                 (task["project_id"], task["id"], message, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
@@ -278,11 +277,11 @@ def check_due_tasks():
     conn.close()
 
 scheduler = BackgroundScheduler()
-# اجرای تابع هر دقیقه (برای دمو، در محیط واقعی زمان‌بندی را می‌توان تغییر داد)
+# For demo purposes, execute every minute (adjust interval as needed)
 scheduler.add_job(func=check_due_tasks, trigger="interval", minutes=1)
 scheduler.start()
 
-# مسیر نمایش اعلان‌های ثبت‌شده
+# Notifications page: Display alerts
 @app.route("/notifications")
 def notifications():
     conn = get_db_connection()
@@ -290,7 +289,7 @@ def notifications():
     conn.close()
     return render_template("notifications.html", notifications=notifications)
 
-# مسیر نمایش نمودارهای تحلیلی (مثلاً نمودار هزینه‌های پروژه‌ها با Chart.js)
+# Charts page: Display project expense charts using Chart.js
 @app.route("/charts")
 def charts():
     conn = get_db_connection()
@@ -302,8 +301,9 @@ def charts():
     conn.close()
     return render_template("charts.html", chart_data=chart_data)
 
-# امکانات اضافی جهت تعامل با داده‌ها:
-# 1. API: ارائه داده‌های پروژه به صورت JSON (مناسب برای ادغام با اپلیکیشن‌های موبایلی و سیستم‌های دیگر)
+# -----------------------------------------------------------------
+# Additional Data Interaction Features:
+# 1. API: Return projects data in JSON format (suitable for mobile apps etc.)
 @app.route("/api/projects")
 def api_projects():
     conn = get_db_connection()
@@ -312,7 +312,7 @@ def api_projects():
     projects_list = [{key: project[key] for key in project.keys()} for project in projects]
     return jsonify(projects_list)
 
-# 2. صادرات داده: استخراج اطلاعات پروژه‌ها به صورت فایل CSV که می‌توان آن را به عنوان نسخه پشتیبان دانلود کرد.
+# 2. Data Export: Export projects data as CSV for backups.
 @app.route("/export")
 def export_data():
     conn = get_db_connection()
@@ -329,13 +329,14 @@ def export_data():
     return response
 
 # -----------------------------------------------------------
-# نکات لازم جهت بسته‌بندی به عنوان برنامه دسکتاپ
+# Instructions for Packaging as a Desktop App:
 # -----------------------------------------------------------
-# برای تبدیل این اپلیکیشن به یک فایل اجرایی (مثلاً در ویندوز)، می‌توانید از PyInstaller به شکل زیر استفاده کنید:
+# To convert this application into a standalone executable (e.g., for Windows),
+# you can use PyInstaller as follows:
 #
 #   pyinstaller --onefile --add-data "templates;templates" app.py
 #
-# در دستور بالا پوشه‌ی templates به داخل بسته گنجانده می‌شود تا برنامه بدون نیاز به نصب پایتون اجرا شود.
+# This command bundles the templates folder into the executable so that Python installation is not required.
 
 if __name__ == "__main__":
     try:
